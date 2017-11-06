@@ -1,28 +1,28 @@
 ## To connect to a transaction node
 
-*   In the Azure Portal go to the Resource Group the network has been deployed to and click on the link "x Succeeded"
-*   Choose the deployment listet first ("microsoft-azure-blockchain.azure-blockchain...") 
-*   Copy the URL path under Outputs ("xxx.xxx.cloudapp.azure.com")
-*   Open Putty (or similar) and connect to "xxx.xxx.cloudapp.azure.com" on port 3000
+*   In the Azure Portal go to the Resource Group the network has been deployed to and click on the link `x Succeeded`
+*   Choose the deployment listet first (`microsoft-azure-blockchain.azure-blockchain...`) 
+*   Copy the URL path under Outputs (`xxx.xxx.cloudapp.azure.com`)
+*   Open Putty (or similar) and connect to `xxx.xxx.cloudapp.azure.com` on port `3000`
 *   Enter your credentials
 *   Now you are connect to a transaction node
 
 ## To connect to a miner
 
-*    In the Azure Portal go to the Resource Group the network has been deployed to
-*   Fist you need to connect to a transactio node
-*   Then depending on which miner you want to connect to click on "nic-mn0" or "nic-mn1"
+*   In the Azure Portal go to the Resource Group the network has been deployed to
+*   First you need to connect to a transactio node
+*   Then depending on which miner you want to connect to click on `nic-mn0` or `nic-mn1`
 *   Get the private IP address
-*   In the command window where you are connected to the transaction node type "ssh privateIP" and hit Enter
+*   In the command window where you are connected to the transaction node type `ssh privateIP` and hit Enter
 *   Enter your password
 *   Now you are connected to a mining node within the network
 *   To show the mining output:
-    *   Get the PID via "ps -aux | grep geth --datadir"
-        *   Choose the one with "geth --datadir...
-    *   Show the output of the related process via "tail -f /proc/<pid>/fd/1"
+    *   Get the PID via `ps -aux | grep geth`
+        *   Choose the one with `geth --datadir...`
+    *   Show the output of the related process via `tail -f /proc/<pid>/fd/1`
     *   Now you see the mininig output
-    *   To stop displaying the output press "Ctrl + c"
-*   To return to the transaction node type "logout" and hit Enter
+    *   To stop displaying the output press `Ctrl + c`
+*   To return to the transaction node type `logout` and hit Enter
 
 ## Important Ethereum Commands
 
@@ -31,4 +31,20 @@
 *   Select an existing account: `eth.accounts[x]`
 *   Get balance of an account: `eth.getBalance(eth.accounts[x])`
 *   Create a new account: `personal.newAccount("passphrase")`
+*   Unlock account: `personal.unlockAccount(eth.accounts[0], "pwd", 3600)`
 *   Send a transaction: `eth.sendTransaction({from: eth.accounts[0], to: 'addressTX0Account', value: web3.toWei(5, "ether")})`
+*   Run a function in a deployed Smart Contract
+    *   Set variables
+        *   `var address = "..."`
+        *   `var abi = ...`
+    *   Get the contract
+        *   `var contract = eth.contract(abi).at(address)`
+    *   Run the function
+        *   `contract.greet.call()`
+
+
+
+
+
+var address = "0xf86a502cfbaf03302113a79e4c5c886f90afd5cb"
+var abi = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_greeting","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]
