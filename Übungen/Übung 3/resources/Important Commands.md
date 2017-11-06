@@ -41,10 +41,3 @@
         *   `var contract = eth.contract(abi).at(address)`
     *   Run the function
         *   `contract.greet.call()`
-
-
-
-
-
-var address = "0xf86a502cfbaf03302113a79e4c5c886f90afd5cb"
-var abi = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_greeting","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]
